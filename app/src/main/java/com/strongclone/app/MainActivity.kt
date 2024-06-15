@@ -1,5 +1,6 @@
 package com.strongclone.app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,18 +13,26 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.strongclone.app.databinding.ActivityLoginBinding
+import com.strongclone.app.databinding.ActivityMainBinding
 import com.strongclone.app.ui.theme.StrongCloneTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_authentication)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        auth = Firebase.auth
+        binding.signOutBtn.setOnClickListener {
+            Firebase.auth.signOut()
+            val intent = Intent(this, LoginActivity::class.java);
+            startActivity(intent)
+        }
     }
-//    val googleIdOption: GetGoogleIdOption = GetGoogleIdOption.Builder()
-//        .setFilterByAuthorizedAccounts(true)
-//        .setServerClientId()
-//        .setAutoSelectEnabled(true)
-//        .setNonce(<nonce string to use when generating a Google ID token>)
-//    .build()
 }
