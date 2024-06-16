@@ -63,7 +63,6 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.credentials)
-    implementation(libs.google.googleid)
     implementation(libs.firebase.auth)
     implementation(libs.gms.play.services.auth)
     implementation(libs.androidx.appcompat)
