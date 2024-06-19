@@ -1,4 +1,11 @@
 <resources>
-    <string name="app_name">StrongClone</string>
+    <string name="app_name">ezTrack</string>
     <string name="default_web_client_id">895799623390-gdtjjcq6edcc3cg0qfm7u0o60lnta605.apps.googleusercontent.com</string>
+    <string name="register_phrase"><font color="#000000">Don\'t have an account? </font><font color="#29C5F6">Create one</font></string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="register_btn">Register</string>
+    <string name="google_client_id">895799623390-unhba0vka3k1f886squ8mmlu57hjl9dv.apps.googleusercontent.com</string>
+    <string name="forgot_password">Forgot Password? <font color="#29C5F6">Reset here</font></string>
 </resources>
