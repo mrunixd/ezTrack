@@ -4,6 +4,8 @@ import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         auth = Firebase.auth
-        binding.continueBtn.setOnClickListener {
+        binding.registerBtn.setOnClickListener {
             auth.createUserWithEmailAndPassword(binding.emailInput.getText().toString().trim(), binding
                 .passwordInput.getText().toString().trim())
                 .addOnCompleteListener(this) { task ->
