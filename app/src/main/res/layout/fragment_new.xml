@@ -3,13 +3,66 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".New">
+    tools:context=".New"
+    android:background="#212529">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="@color/teal_700"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ready to Start?"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#ffffff"
+            android:layout_margin="30dp"/>
+
+        <Button
+            android:id="@+id/startWorkoutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25sp"
+            android:layout_marginBottom="20dp"
+            android:text="Start Workout"
+            android:textSize="20sp"
+            android:background="@drawable/btn_shape_capsule"
+            android:backgroundTint="#ffffff"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Workouts"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="#ffffff"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginVertical="10dp"/>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@drawable/btn_shape_capsule"
+            android:backgroundTint="#ffffff"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginBottom="10dp"
+            android:padding="10dp">
+
+        </ListView>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Create new workout"
+            android:background="@drawable/btn_shape_capsule"
+            android:backgroundTint="#ffffff"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="25dp"
+            android:paddingHorizontal="30dp"/>
+
+    </LinearLayout>
+
 
 </FrameLayout>
