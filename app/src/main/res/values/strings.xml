@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ezTrack</string>
+    <string name="app_name">EzTrack</string>
     <string name="default_web_client_id">895799623390-gdtjjcq6edcc3cg0qfm7u0o60lnta605.apps.googleusercontent.com</string>
     <string name="register_phrase"><font color="#000000">Don\'t have an account? </font><font color="#29C5F6">Create one</font></string>
     <string name="login_phrase"><font color="#000000">Already have an account?</font><font color="#29C5F6"> Login</font></string>

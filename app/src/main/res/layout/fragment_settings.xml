@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Settings">
+    tools:context=".Settings"
+    android:background="#212529">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ImageButton
+        android:id="@+id/signOutBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#212529"
+        android:contentDescription="A sign out button"
+        android:src="@mipmap/logout_btn_foreground"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        tools:ignore="HardcodedText" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="@color/black"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log Out"
+        android:textColor="#ff0000"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="20dp"
+        android:textSize="35sp"/>
 
 </FrameLayout>

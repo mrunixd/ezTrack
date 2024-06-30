@@ -15,19 +15,12 @@ import com.strongclone.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        auth = Firebase.auth
-        binding.signOutBtn.setOnClickListener {
-            Firebase.auth.signOut()
-            val intent = Intent(this, LoginActivity::class.java);
-            startActivity(intent)
-        }
-
+        binding.bottomNavigationView.selectedItemId = R.id.newWorkoutBtn
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.settingsBtn -> {
