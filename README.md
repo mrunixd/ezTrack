@@ -36,4 +36,5 @@ Contributions are welcome! Please fork this repository and submit a pull request
 
 ## Contact
 
-For any questions or suggestions, feel free to open an issue.
+For any questions or suggestions, feel free to open an issue or send me an email.
+Email: z5481212@ad.unsw.edu.au
