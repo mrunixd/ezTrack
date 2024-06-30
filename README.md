@@ -1,5 +1,5 @@
 
-# ezTrack 💪
+# EzTrack 💪
 
 ezTrack is a minimalistic and barebones app designed to help you document and track your gym and fitness progress. It allows you to input specific sets, reps, and weights for various exercises and generates graphs and data to visualize your progress over time.
 
