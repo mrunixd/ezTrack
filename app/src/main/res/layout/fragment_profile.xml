@@ -3,13 +3,149 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    tools:context=".Profile"
+    android:background="#212529">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"
-        android:background="@color/purple_200"/>
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"/>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/container_border_outline"
+            android:layout_marginHorizontal="20sp"
+            android:paddingVertical="10sp">
+
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/profile_pic_circle"
+                android:layout_marginHorizontal="20dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Doe"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="15dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="100 Workouts"
+                    android:textSize="13sp"
+                    android:textColor="#ffffff"
+                    android:layout_marginLeft="20dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20sp"
+            android:padding="10dp"
+            android:background="@drawable/container_border_outline"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Track Your Progress"
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:layout_margin="10dp"/>
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/btn_shape_capsule"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10sp"
+                android:text="Body Weight"
+                android:textAlignment="textStart"
+                android:padding="10sp"
+                android:textSize="17sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/btn_shape_capsule"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10sp"
+                android:text="Strength"
+                android:textAlignment="textStart"
+                android:padding="10sp"
+                android:textSize="17sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/btn_shape_capsule"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10sp"
+                android:text="Consistency"
+                android:textAlignment="textStart"
+                android:padding="10sp"
+                android:textSize="17sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/btn_shape_capsule"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10sp"
+                android:text="Personal Records"
+                android:textAlignment="textStart"
+                android:padding="10sp"
+                android:textSize="17sp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="50sp"
+                android:background="@drawable/btn_shape_capsule"
+                android:backgroundTint="#ffffff"
+                android:layout_margin="10sp"
+                android:text="BMI"
+                android:textAlignment="textStart"
+                android:padding="10sp"
+                android:textSize="17sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="EzTrack by mrunixd"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:layout_marginHorizontal="90sp"
+            android:padding="10sp"
+            android:textAlignment="center"
+            android:background="@drawable/container_border_outline"
+            android:layout_gravity="center|bottom"/>
+
+    </LinearLayout>
 </FrameLayout>
