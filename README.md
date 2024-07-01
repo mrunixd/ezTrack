@@ -17,11 +17,8 @@ ezTrack is a minimalistic and barebones app designed to help you document and tr
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 ## Screenshots
-![Image of basic profile page](/screenshots/profile_example_basic.png)
 ![image](https://github.com/mrunixd/ezTrack/assets/130002545/c4c15995-233c-47bf-9f3b-591a694cbdcd)
-
-
-- Basic Layout of Profile Page
+![Image of basic profile page](/screenshots/profile_example_basic.png)
 
 ## Installation
 - ...
