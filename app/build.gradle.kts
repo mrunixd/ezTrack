@@ -72,6 +72,7 @@ dependencies {
     implementation(libs.gms.play.services.auth)
     implementation(libs.glide)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.firebase.firestore.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

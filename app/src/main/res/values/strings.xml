@@ -9,6 +9,7 @@
     <string name="register_btn">Register</string>
     <string name="google_client_id">895799623390-unhba0vka3k1f886squ8mmlu57hjl9dv.apps.googleusercontent.com</string>
     <string name="forgot_password">Forgot Password? <font color="#29C5F6">Reset here</font></string>
+    <string name="tell_me_more_details">Tell me more about you!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

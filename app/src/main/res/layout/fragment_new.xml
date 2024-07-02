@@ -29,8 +29,8 @@
             android:layout_marginBottom="20dp"
             android:text="Start Workout"
             android:textSize="20sp"
-            android:background="@drawable/btn_shape_capsule"
-            android:backgroundTint="#ffffff"/>
+            android:background="@drawable/container_border_outline"
+            android:textColor="#ffffff"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -44,20 +44,19 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@drawable/btn_shape_capsule"
+            android:background="@drawable/container_border_outline"
             android:backgroundTint="#ffffff"
             android:layout_marginHorizontal="25dp"
             android:layout_marginBottom="10dp"
             android:padding="10dp">
-
         </ListView>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:text="Create new workout"
-            android:background="@drawable/btn_shape_capsule"
-            android:backgroundTint="#ffffff"
+            android:background="@drawable/container_border_outline"
+            android:textColor="#ffffff"
             android:layout_gravity="center"
             android:layout_marginHorizontal="25dp"
             android:paddingHorizontal="30dp"/>

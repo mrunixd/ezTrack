@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RegisterDetailsActivity"
+    android:background="#212529">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/container_border_outline"
+        android:padding="30dp"
+        android:layout_margin="25dp"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tell_me_more_details"
+            android:textColor="#ffffff"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:padding="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#ffffff"
+            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="15dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="8dp"
+            android:background="#212529">
+
+            <EditText
+                android:id="@+id/firstNameInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/container_border_outline"
+                android:backgroundTint="#ffffff"
+                android:hint="First Name"
+                android:padding="8dp"
+                android:layout_margin="5dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/lastNameInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/container_border_outline"
+                android:backgroundTint="#ffffff"
+                android:hint="Last Name"
+                android:padding="8dp"
+                android:layout_margin="5dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginVertical="8dp"
+            android:background="#212529">
+
+            <Spinner
+                android:id="@+id/sexInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/container_border_outline"
+                android:padding="8dp"
+                android:layout_marginHorizontal="5dp"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/heightInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/container_border_outline"
+                android:backgroundTint="#ffffff"
+                android:hint="Height"
+                android:padding="8dp"
+                android:layout_marginHorizontal="5dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="16dp"/>
+
+            <EditText
+                android:id="@+id/weightInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/container_border_outline"
+                android:backgroundTint="#ffffff"
+                android:hint="Weight"
+                android:padding="8dp"
+                android:layout_marginHorizontal="5dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="16dp"/>
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/dobInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/container_border_outline"
+            android:backgroundTint="#ffffff"
+            android:layout_marginVertical="8dp"
+            android:hint="Date of Birth"
+            android:padding="8dp"
+            android:layout_marginHorizontal="5dp"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="16dp"
+            android:focusable="false"/>
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:background="@drawable/container_border_outline"
+            android:text="Next"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:layout_marginVertical="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginVertical="8dp"
+            android:background="@drawable/container_border_outline"/>
+
+    </LinearLayout>
+
+</LinearLayout>
