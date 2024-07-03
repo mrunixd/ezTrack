@@ -1,4 +1,3 @@
-
 # EzTrack 💪
 
 ezTrack is a minimalistic and barebones app designed to help you document and track your gym and fitness progress. It allows you to input specific sets, reps, and weights for various exercises and generates graphs and data to visualize your progress over time.
@@ -16,8 +15,10 @@ ezTrack is a minimalistic and barebones app designed to help you document and tr
 ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 ## Screenshots
-![image](https://github.com/mrunixd/ezTrack/assets/130002545/c4c15995-233c-47bf-9f3b-591a694cbdcd)
-![Image of basic profile page](/screenshots/profile_example_basic.png)
+<img src="https://github.com/mrunixd/ezTrack/assets/130002545/c4c15995-233c-47bf-9f3b-591a694cbdcd" alt="Login Page" width="300" height="533" /> <img src="/screenshots/profile_example_basic.png" alt="Image of basic profile page" width="300" height="533" /> 
+
+<img src="https://github.com/mrunixd/ezTrack/assets/130002545/325851d0-e58f-4de9-8a99-c71524c18261" alt="Image of Home Page" width="300" height="533" /> <img src="https://github.com/mrunixd/ezTrack/assets/130002545/39e47723-5444-4c4d-a1f5-3150f0856bfe" alt="Image of adding exercises" width="300" height="533" />
+
 
 ## Installation
 - ...
