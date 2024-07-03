@@ -1,59 +1,83 @@
 package com.strongclone.app
 
+import android.content.ContentValues.TAG
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.strongclone.app.databinding.ActivityNewWorkoutBinding
+import com.strongclone.app.databinding.FragmentNewBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [New.newInstance] factory method to
- * create an instance of this fragment.
- */
 class New : Fragment(R.layout.fragment_new) {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentNewBinding
+    private lateinit var firestore: FirebaseFirestore
+    private val workouts = mutableListOf<String>()
+    private lateinit var exerciseListAdapter: ArrayAdapter<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new, container, false)
+    ): View {
+        binding = FragmentNewBinding.inflate(inflater, container, false)
+        firestore = FirebaseFirestore.getInstance()
+
+        exerciseListAdapter = WorkoutListAdapter(requireContext(), workouts)
+
+        binding.newWorkoutBtn.setOnClickListener {
+            val intent = Intent(activity, NewWorkout::class.java)
+            startActivity(intent)
+            activity?.finish()
+        }
+
+        getWorkouts()
+        return binding.root
+    }
+
+    private fun getWorkouts() {
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
+        if (userId != null) {
+            firestore.collection("users")
+                .document(userId)
+                .collection("workoutTemplates")
+                .get()
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val workoutName = document.getString("name")
+                        if (workoutName != null) {
+                            workouts.add(workoutName)
+                        }
+                    }
+                    // Notify the adapter that data set has changed
+                    exerciseListAdapter.notifyDataSetChanged()
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, "retrieveWorkoutList: failed")
+                }
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // Set adapter to the ListView or RecyclerView
+        binding.workoutsList.adapter = exerciseListAdapter
+    }
+
+    // Optional: Add onDestroyView() to clear references to views
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Optionally, clear references to avoid memory leaks
+        // e.g., binding = null
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment New.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            New().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance(param1: String, param2: String) = New()
     }
 }

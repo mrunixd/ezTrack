@@ -12,6 +12,7 @@ import android.app.DatePickerDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.strongclone.app.databinding.ActivityRegisterDetailsBinding
 import java.util.Calendar
@@ -55,13 +56,16 @@ class RegisterDetailsActivity : AppCompatActivity() {
         val dob = binding.dobInput.text.toString().trim()
 
         val user = User(firstName, lastName, height, weight, sex, dob)
-
+        val uid = FirebaseAuth.getInstance().uid
+        
         fireStore.collection("users")
-            .add(user)
+            .document(uid.toString())
+            .set(user)
             .addOnSuccessListener {
                 Log.d(TAG, "addUserToDB: Success")
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             .addOnFailureListener {
                 Log.d(TAG, "addUserToDB: Failure")

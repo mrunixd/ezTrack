@@ -32,7 +32,7 @@ class Settings : Fragment(R.layout.fragment_settings) {
 
             activity?.finish()
         }
-        return binding.root;
+        return binding.root
     }
 
     companion object {
