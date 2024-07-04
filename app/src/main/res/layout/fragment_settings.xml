@@ -7,24 +7,17 @@
     tools:context=".Settings"
     android:background="#212529">
 
-    <ImageButton
+    <Button
         android:id="@+id/signOutBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:background="#212529"
-        android:contentDescription="A sign out button"
-        android:src="@mipmap/logout_btn_foreground"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log Out"
-        android:textColor="#ff0000"
-        android:layout_gravity="bottom|start"
+        android:textColor="#000000"
+        android:background="@drawable/btn_shape_capsule"
+        android:backgroundTint="#ffffff"
         android:layout_margin="20dp"
-        android:textSize="35sp"/>
+        android:textSize="35sp"
+        android:paddingHorizontal="30dp"
+        android:paddingVertical="8dp"/>
 
 </FrameLayout>
