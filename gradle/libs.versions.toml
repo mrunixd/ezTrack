@@ -34,6 +34,7 @@ uiToolingPreview = "1.6.8"
 navigationCompose = "2.7.7"
 uiToolingPreviewVersion = "1.4.3"
 uiVersion = "1.4.3"
+runtimeLivedata = "1.6.8"
 
 [libraries]
 androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
@@ -78,6 +79,7 @@ material3 = { module = "androidx.compose.material3:material3", version.ref = "ma
 ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
 androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
