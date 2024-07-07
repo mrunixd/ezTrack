@@ -1,5 +1,8 @@
 [versions]
+activityComposeVersion = "1.7.2"
 agp = "8.5.0"
+androidxActivityCompose = "1.9.0"
+androidxMaterial = "1.4.3"
 credentialsPlayServicesAuth = "<latest version>"
 fragmentKtx = "1.8.0"
 glide = "4.16.0"
@@ -16,17 +19,36 @@ constraintlayout = "2.1.4"
 googleidVersion = "1.1.0"
 googleGmsGoogleServices = "4.4.2"
 firebaseAuth = "23.0.0"
+lifecycleRuntimeKtxVersion = "2.8.3"
+material3 = "1.2.1"
+materialVersion = "1.6.8"
+navigationComposeVersion = "2.6.0"
 playServicesAuthVersion = "21.2.0"
 appcompat = "1.6.1"
 material = "1.10.0"
 activity = "1.9.0"
 firebaseFirestoreKtx = "25.0.0"
+navigationRuntimeKtx = "2.7.7"
+ui = "1.6.8"
+uiToolingPreview = "1.6.8"
+navigationCompose = "2.7.7"
+uiToolingPreviewVersion = "1.4.3"
+uiVersion = "1.4.3"
 
 [libraries]
+androidx-activity-compose-v172 = { module = "androidx.activity:activity-compose", version.ref = "activityComposeVersion" }
+androidx-activity-compose-v190 = { module = "androidx.activity:activity-compose", version.ref = "androidxActivityCompose" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-credentials = { module = "androidx.credentials:credentials", version.ref = "credentialsPlayServicesAuth" }
 androidx-credentials-play-services-auth = { module = "androidx.credentials:credentials-play-services-auth", version.ref = "credentialsPlayServicesAuth" }
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-lifecycle-runtime-ktx-v283 = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleRuntimeKtxVersion" }
+androidx-material = { module = "androidx.compose.material:material", version.ref = "materialVersion" }
+androidx-material-v143 = { module = "androidx.compose.material:material", version.ref = "androidxMaterial" }
+androidx-navigation-compose-v260 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
+androidx-ui-tooling-preview-v143 = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreviewVersion" }
+androidx-ui-v143 = { module = "androidx.compose.ui:ui", version.ref = "uiVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gms-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
 google-firebase-auth = { module = "com.google.firebase:firebase-auth" }
@@ -51,6 +73,11 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+androidx-navigation-runtime-ktx = { group = "androidx.navigation", name = "navigation-runtime-ktx", version.ref = "navigationRuntimeKtx" }
+material3 = { module = "androidx.compose.material3:material3", version.ref = "material3" }
+ui = { module = "androidx.compose.ui:ui", version.ref = "ui" }
+ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreview" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
