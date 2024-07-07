@@ -73,6 +73,8 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.firebase.firestore.ktx)
+    implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.navigation.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -80,4 +82,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation (libs.ui)
+    implementation (libs.ui.tooling.preview)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v283)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.activity.compose.v190)
+    implementation(libs.androidx.navigation.compose)
+
 }

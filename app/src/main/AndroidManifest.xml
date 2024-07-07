@@ -18,9 +18,6 @@
             android:name=".StartWorkoutActivity"
             android:exported="false" />
         <activity
-            android:name=".NewWorkout"
-            android:exported="false" />
-        <activity
             android:name=".RegisterDetailsActivity"
             android:exported="false" />
         <activity
