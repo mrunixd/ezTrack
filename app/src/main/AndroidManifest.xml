@@ -15,9 +15,6 @@
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".StartWorkoutActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegisterDetailsActivity"
             android:exported="false" />
         <activity

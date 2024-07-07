@@ -112,8 +112,6 @@ fun PreviewNewScreen() {
         val context = LocalContext.current
         Button(
             onClick = {
-                val intent = Intent(context, StartWorkoutActivity::class.java)
-                context.startActivity(intent)
             },
             modifier = Modifier
                 .fillMaxWidth()
