@@ -28,8 +28,11 @@ fun SettingsScreen(
         Button(
             onClick = {
                 viewModel.logout()
-                val intent = Intent(context, LoginActivity::class.java)
-                context.startActivity(intent);
+                navController.navigate("login") {
+                    popUpTo(navController.graph.startDestinationId) {
+                        saveState = true
+                    }
+                }
             },
             modifier = Modifier
                 .padding(8.dp)

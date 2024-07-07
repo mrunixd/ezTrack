@@ -5,57 +5,32 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import com.strongclone.app.databinding.ActivityLoginBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import com.strongclone.app.ui.theme.StrongCloneTheme
+import androidx.lifecycle.viewmodel.compose.viewModel
 
-class LoginActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth: FirebaseAuth
-
+class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityLoginBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        auth = Firebase.auth
-        binding.continueBtn.setOnClickListener {
-            auth.signInWithEmailAndPassword(binding.emailInput.getText().toString().trim(), binding
-                .passwordInput.getText().toString().trim())
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithEmail:success")
+        setContent {
+            StrongCloneTheme {
+                val viewModel: LoginViewModel = viewModel()
+                LoginScreen(
+                    viewModel = viewModel,
+                    onLoginSuccess = {
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext,
-                            "Authentication failed.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
+                        finish()
+                    },
+                    onRegister = {
+                        val intent = Intent(this, RegisterActivity::class.java)
+                        startActivity(intent)
                     }
-                }
+                )
+            }
         }
 
 
-        binding.registerBtn.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
-            startActivity(intent)
-        }
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currUser = auth.currentUser
-        if (currUser != null) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

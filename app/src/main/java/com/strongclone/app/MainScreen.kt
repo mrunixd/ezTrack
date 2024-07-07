@@ -1,5 +1,6 @@
 package com.strongclone.app
 
+import android.content.Intent
 import com.strongclone.app.NewScreen
 import com.strongclone.app.NewWorkoutScreen
 import com.strongclone.app.ProfileScreen
@@ -16,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -44,14 +46,18 @@ fun MainScreen() {
         BottomNavigationBar(navController, items)
     }
 }
-
 @Composable
 fun NavigationComponent(navController: NavController) {
+    val context = LocalContext.current
     NavHost(navController as NavHostController, startDestination = "new") {
         composable("new") { NewScreen(navController = navController) }
         composable("profile") { ProfileScreen(navController = navController) }
         composable("settings") { SettingsScreen(navController = navController) }
         composable("newWorkoutTemplate") { NewWorkoutScreen(navController = navController)}
+        composable("login") {
+            val intent = Intent(context, LoginActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 }
 
