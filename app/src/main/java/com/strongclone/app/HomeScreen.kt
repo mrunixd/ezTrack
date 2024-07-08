@@ -1,8 +1,6 @@
 package com.strongclone.app
 
-import android.content.Intent
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,9 +23,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun NewScreen(
+fun HomeScreen(
+    modifier: Modifier,
     viewModel: NewViewModel = viewModel(),
     navController: NavController
 ) {
@@ -98,63 +98,5 @@ fun NewScreen(
 @Preview(showBackground = false)
 @Composable
 fun PreviewNewScreen() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(
-            text = "Ready to Start?",
-            fontSize = 30.sp,
-            modifier = Modifier.padding(20.dp)
-        )
-
-        val context = LocalContext.current
-        Button(
-            onClick = {
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 25.dp, vertical = 20.dp)
-        ) {
-            Text("Start Workout", fontSize = 20.sp, color = Color.White)
-        }
-
-        Text(
-            text = "My Workouts",
-            fontSize = 25.sp,
-            modifier = Modifier.padding(horizontal = 30.dp, vertical = 10.dp)
-        )
-
-        LazyColumn(
-            modifier = Modifier
-                .padding(horizontal = 25.dp, vertical = 10.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .border(BorderStroke(2.dp, Color.White), RoundedCornerShape(16.dp))
-                .padding(8.dp)
-        ) {
-            items(listOf("Workout 1", "Workout 2", "Workout 3")) { workout ->
-                Text(
-                    text = workout,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 15.dp, vertical = 8.dp),
-                    fontSize = 18.sp
-                )
-            }
-        }
-
-        Button(
-            onClick = {
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 30.dp, vertical = 10.dp)
-        ) {
-            Text(
-                text = "Create Workout",
-                fontSize = 20.sp
-            )
-        }
-    }
+    HomeScreen(modifier = Modifier, navController = rememberNavController())
 }

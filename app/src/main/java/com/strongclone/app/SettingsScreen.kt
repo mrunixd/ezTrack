@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,9 +19,18 @@ import androidx.navigation.NavController
 
 @Composable
 fun SettingsScreen(
-    viewModel: SettingsViewModel = viewModel(),
+    viewModel: AuthViewModel = viewModel(),
     navController: NavController
 ) {
+    val authState = viewModel.authState.observeAsState()
+
+    LaunchedEffect(authState.value) {
+        when(authState.value) {
+            is AuthState.Unauthenticated -> navController.navigate("login")
+            else -> Unit
+        }
+    }
+
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -27,12 +38,7 @@ fun SettingsScreen(
         val context = LocalContext.current
         Button(
             onClick = {
-                viewModel.logout()
-                navController.navigate("login") {
-                    popUpTo(navController.graph.startDestinationId) {
-                        saveState = true
-                    }
-                }
+                viewModel.signOut()
             },
             modifier = Modifier
                 .padding(8.dp)
@@ -45,9 +51,7 @@ fun SettingsScreen(
 
 @Preview
 @Composable
-fun SettingsScreenPreview(
-    viewModel: SettingsViewModel = viewModel()
-) {
+fun SettingsScreenPreview() {
     Column (
         modifier = Modifier
             .fillMaxWidth()
