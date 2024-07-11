@@ -52,13 +52,23 @@ fun RegisterScreen(
     var confirmPassword by remember { mutableStateOf("") }
     val context = LocalContext.current
 
-    val authState = viewModel.authState.observeAsState()
+    val authState by viewModel.authState.observeAsState()
 
-    LaunchedEffect(authState.value) {
-        when(authState.value) {
-            is AuthState.Authenticated -> navController.navigate("registerDetails")
-            is AuthState.Error -> Toast.makeText(context, (authState.value as AuthState.Error).message, Toast.LENGTH_SHORT)
-            else -> Unit
+    // Handle navigation based on auth state
+    LaunchedEffect(authState) {
+        when (authState) {
+            is AuthState.AuthenticatedButRequireDetails -> {
+                navController.navigate("registerDetails")
+            }
+            is AuthState.Authenticated -> {
+                navController.navigate("home")
+            }
+            is AuthState.Error -> {
+                Toast.makeText(context, (authState as AuthState.Error).message, Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                // Do nothing for other states
+            }
         }
     }
 

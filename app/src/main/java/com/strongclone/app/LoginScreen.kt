@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -42,15 +43,25 @@ fun LoginScreen(
 ) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
     val context = LocalContext.current
+    val authState by viewModel.authState.observeAsState()
 
-    val authState = viewModel.authState.observeAsState()
-
-    LaunchedEffect(authState.value) {
-        when(authState.value) {
-            is AuthState.Authenticated -> navController.navigate("home")
-            is AuthState.Error -> Toast.makeText(context, "Login details are incorrect!", Toast.LENGTH_SHORT).show()
-            else -> Unit
+    // Handle navigation based on auth state
+    LaunchedEffect(authState) {
+        when (authState) {
+            is AuthState.AuthenticatedButRequireDetails -> {
+                navController.navigate("registerDetails")
+            }
+            is AuthState.Authenticated -> {
+                navController.navigate("home")
+            }
+            is AuthState.Error -> {
+                Toast.makeText(context, (authState as AuthState.Error).message, Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                // Do nothing for other states
+            }
         }
     }
 
@@ -145,6 +156,7 @@ fun LoginScreen(
                     text = "Forgot Password? Reset here",
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
+
             }
         }
     }

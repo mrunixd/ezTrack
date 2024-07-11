@@ -65,7 +65,8 @@ fun HomeScreen(
                 .padding(horizontal = 25.dp, vertical = 10.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .border(BorderStroke(2.dp, Color.Black), RoundedCornerShape(16.dp))
-                .padding(8.dp)
+                .padding(20.dp)
+                .fillMaxWidth()
         ) {
             items(workouts) { workout ->
                 Text(

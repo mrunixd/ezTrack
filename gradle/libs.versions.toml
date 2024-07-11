@@ -4,9 +4,12 @@ agp = "8.5.0"
 androidxActivityCompose = "1.9.0"
 androidxMaterial = "1.4.3"
 credentialsPlayServicesAuth = "<latest version>"
+firebaseBom = "33.1.1"
+firebaseCore = "21.1.1"
 fragmentKtx = "1.8.0"
 glide = "4.16.0"
 googleid = "<latest version>"
+googleServices = "4.4.2"
 kotlin = "1.9.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
@@ -50,9 +53,13 @@ androidx-material-v143 = { module = "androidx.compose.material:material", versio
 androidx-navigation-compose-v260 = { module = "androidx.navigation:navigation-compose", version.ref = "navigationComposeVersion" }
 androidx-ui-tooling-preview-v143 = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "uiToolingPreviewVersion" }
 androidx-ui-v143 = { module = "androidx.compose.ui:ui", version.ref = "uiVersion" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
+firebase-core = { module = "com.google.firebase:firebase-core", version.ref = "firebaseCore" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gms-play-services-auth = { module = "com.google.android.gms:play-services-auth", version.ref = "playServicesAuthVersion" }
 google-firebase-auth = { module = "com.google.firebase:firebase-auth" }
+google-services = { module = "com.google.gms:google-services", version.ref = "googleServices" }
 googleid = { module = "com.google.android.libraries.identity.googleid:googleid", version.ref = "googleid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

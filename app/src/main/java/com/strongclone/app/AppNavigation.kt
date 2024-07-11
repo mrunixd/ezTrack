@@ -16,13 +16,31 @@ import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import java.util.Locale
 
 @Composable
-fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel) {
+fun MyAppNavigation(modifier: Modifier = Modifier, viewModel: AuthViewModel) {
     val navController = rememberNavController()
+    val authState = viewModel.authState.observeAsState()
+
+    LaunchedEffect(authState.value) {
+        when (authState.value) {
+            is AuthState.Authenticated -> navController.navigate("home") {
+                popUpTo("login") { inclusive = true }
+            }
+            is AuthState.AuthenticatedButRequireDetails -> navController.navigate("registerDetails") {
+                popUpTo("login") { inclusive = true }
+            }
+            is AuthState.Unauthenticated -> navController.navigate("login") {
+                popUpTo("home") { inclusive = true }
+            }
+            else -> Unit
+        }
+    }
 
     Scaffold(
         bottomBar = {
@@ -51,8 +69,8 @@ fun MyAppNavigation(modifier: Modifier = Modifier, authViewModel: AuthViewModel)
 @Composable
 fun BottomNavigationBar(navController: NavController) {
     val items = listOf(
-        "home" to Icons.Default.Home,
         "profile" to Icons.Default.Person,
+        "home" to Icons.Default.Home,
         "settings" to Icons.Default.Settings
     )
 

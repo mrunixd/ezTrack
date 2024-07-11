@@ -22,11 +22,11 @@ class AuthViewModel: ViewModel() {
         checkAuthStatus()
     }
 
-    fun checkAuthStatus() {
+    private fun checkAuthStatus() {
         if (auth.currentUser == null) {
             _authState.value = AuthState.Unauthenticated
         } else {
-            _authState.value = AuthState.Authenticated
+            checkUserDetails(auth.currentUser!!.uid)
         }
     }
 
@@ -35,7 +35,6 @@ class AuthViewModel: ViewModel() {
             _authState.value = AuthState.Error("Email or Password can't be empty")
         }
 
-        _authState.value = AuthState.Loading
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -51,11 +50,10 @@ class AuthViewModel: ViewModel() {
             _authState.value = AuthState.Error("Email or Password can't be empty")
         }
 
-        _authState.value = AuthState.Loading
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    _authState.value = AuthState.Authenticated
+                    _authState.value = AuthState.AuthenticatedButRequireDetails
                 } else {
                     _authState.value = AuthState.Error(task.exception?.message?:"Something went wrong")
                 }
@@ -67,8 +65,8 @@ class AuthViewModel: ViewModel() {
         _authState.value = AuthState.Unauthenticated
     }
 
-    fun addUserToDB(firstName: String, lastName: String, sex: String, height: String, weight: String, dob: String) {
-        val user = User(firstName,lastName, height.toInt(), weight.toInt(), sex, dob)
+    fun addUserToDB(firstName: String, lastName: String, height: String, weight: String) {
+        val user = User(firstName,lastName, height.toInt(), weight.toInt())
         val userId = Firebase.auth.currentUser?.uid
 
         firestore.collection("users")
@@ -76,9 +74,27 @@ class AuthViewModel: ViewModel() {
             .set(user)
             .addOnSuccessListener {
                 Log.d(TAG, "addUserToDB: Success")
+                _authState.value = AuthState.Authenticated
             }
             .addOnFailureListener {
                 Log.d(TAG, "addUserToDB: Failure")
+            }
+    }
+
+    private fun checkUserDetails(userId: String) {
+        firestore.collection("users")
+            .document(userId)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    _authState.value = AuthState.Authenticated
+                } else {
+                    _authState.value = AuthState.AuthenticatedButRequireDetails
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.d(TAG, "checkUserDetails: Failure", e)
+                _authState.value = AuthState.Error(e.message ?: "Failed to check user details")
             }
     }
 }
@@ -87,6 +103,7 @@ sealed class AuthState {
     object Authenticated: AuthState()
     object Unauthenticated: AuthState()
     object Loading: AuthState()
+    object AuthenticatedButRequireDetails: AuthState()
 
     data class Error(val message: String) : AuthState()
 }

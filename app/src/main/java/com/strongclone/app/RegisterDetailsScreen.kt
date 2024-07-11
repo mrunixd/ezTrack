@@ -1,8 +1,10 @@
 package com.strongclone.app
 
 import android.app.DatePickerDialog
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,17 +15,24 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -31,10 +40,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.unit.toSize
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.google.android.gms.auth.api.Auth
+import com.google.android.material.datepicker.MaterialDatePicker
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterDetailsScreen(
     viewModel: AuthViewModel = viewModel(),
@@ -43,29 +56,25 @@ fun RegisterDetailsScreen(
     val context = LocalContext.current
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
-    var sex by remember { mutableStateOf("") }
     var height by remember { mutableStateOf("") }
     var weight by remember { mutableStateOf("") }
-    var dob by remember { mutableStateOf("") }
-    var sexExpanded by remember { mutableStateOf(false) }
-    val sexOptions = listOf("Male", "Female", "Non-Binary")
 
-    val year = remember { mutableIntStateOf(2000) }
-    val month = remember { mutableIntStateOf(0) }
-    val day = remember { mutableIntStateOf(1) }
+    val authState by viewModel.authState.observeAsState()
 
-    val datePickerDialog = DatePickerDialog(
-        context,
-        { _, selectedYear, selectedMonth, selectedDay ->
-            year.intValue = selectedYear
-            month.intValue = selectedMonth
-            day.intValue = selectedDay
-            dob = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-        },
-        year.intValue,
-        month.intValue,
-        day.intValue
-    )
+    // Handle navigation based on auth state
+    LaunchedEffect(authState) {
+        when (authState) {
+            is AuthState.Authenticated -> {
+                navController.navigate("home")
+            }
+            is AuthState.Error -> {
+                Toast.makeText(context, (authState as AuthState.Error).message, Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                // Do nothing for other states
+            }
+        }
+    }
 
 
     Column(
@@ -112,34 +121,6 @@ fun RegisterDetailsScreen(
             )
         }
 
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .padding(5.dp)) {
-            OutlinedTextField(
-                value = sex,
-                onValueChange = {},
-                label = { Text("Sex") },
-                readOnly = true,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { sexExpanded = true },
-            )
-            DropdownMenu(
-                expanded = sexExpanded,
-                onDismissRequest = { sexExpanded = false },
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                sexOptions.forEach { option ->
-                    DropdownMenuItem(
-                        text = { Text(option) },
-                        onClick = {
-                            sex = option
-                            sexExpanded = false
-                    })
-                }
-            }
-        }
-
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -174,23 +155,12 @@ fun RegisterDetailsScreen(
             )
         }
 
-        OutlinedTextField(
-            value = dob,
-            onValueChange = { },
-            label = { Text("Date of Birth") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp, horizontal = 5.dp)
-                .clickable { datePickerDialog.show() },
-            readOnly = true
-        )
-
         Button(
             onClick = {
                 if (firstName.isNotBlank() && lastName.isNotBlank() && height.isNotBlank() &&
-                    weight.isNotBlank() && sex.isNotBlank() && dob.isNotBlank()
+                    weight.isNotBlank()
                 ) {
-                    viewModel.addUserToDB(firstName, lastName,sex, height, weight, dob)
+                    viewModel.addUserToDB(firstName, lastName, height, weight)
                     navController.navigate("home")
                 } else {
                     Toast.makeText(
