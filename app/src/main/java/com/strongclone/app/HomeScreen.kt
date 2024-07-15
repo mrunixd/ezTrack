@@ -46,6 +46,7 @@ fun HomeScreen(
 
         Button(
             onClick = {
+                navController.navigate("startWorkout")
             },
             modifier = Modifier
                 .fillMaxWidth()

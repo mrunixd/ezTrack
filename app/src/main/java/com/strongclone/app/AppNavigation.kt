@@ -62,6 +62,7 @@ fun MyAppNavigation(modifier: Modifier = Modifier, viewModel: AuthViewModel) {
             composable("login") { LoginScreen(modifier, navController = navController) }
             composable("register") { RegisterScreen(modifier, navController = navController) }
             composable("registerDetails") { RegisterDetailsScreen(navController = navController) }
+            composable("startWorkout") { WorkoutScreen(navController = navController) }
         }
     }
 }
